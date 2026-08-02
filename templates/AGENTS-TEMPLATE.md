@@ -100,6 +100,23 @@ RootLayout (app/layout.tsx)
 
 ## Git Safety Protocol
 
+### Branch Strategy
+
+Before the first commit of new work that isn't a continuation of the current
+branch (new feature, fix, or any work starting from `main`/`production`), ask
+the developer:
+
+> "Work in a git worktree (isolated directory + branch — good if other
+> features may be in flight on this repo) or branch in place?"
+
+- **Worktree:** `EnterWorktree` with `name: <type>/<short-desc>` — creates the
+  branch and switches the session into its own directory.
+- **In place:** `git checkout -b <type>/<short-desc>` (feat/fix/chore) off the
+  default branch.
+
+Ask once per new branch — don't re-ask for continuation work on an
+already-checked-out branch. Never work on the default branch directly.
+
 ### Forbidden Without Explicit Approval
 
 - `git reset --hard`
